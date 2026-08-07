@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  /* Pastel brand palette */
+  --color-cream: #faf3e8;
+  --color-blush: #f6dcd3;
+  --color-sage: #e3e9d6;
+  --color-sky: #dcebf0;
+  --color-butter: #f2e2a9;
+  --color-peach: #f5cba0;
+  --color-charcoal: #2a2420;
+  --color-coral: #d9704a;
+  --color-coral-dark: #c15f3c;
+  --color-plum: #7d4f68;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream font-sans text-charcoal antialiased;
+}
