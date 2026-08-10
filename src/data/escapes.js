@@ -1,12 +1,23 @@
 import mahabaleshwarImage from '../assets/images/6-final.png'
 import tarkarliImage from '../assets/images/7-final.png'
 import puneImage from '../assets/images/8-final.png'
-import mountainsImage from '../assets/images/2-final.png'
-import wildlifeImage from '../assets/images/5-final.png'
-import beachesImage from '../assets/images/3-final.png'
-import cityImage from '../assets/images/4-final.png'
-import heroImage from '../assets/images/1-final.png'
-import closingImage from '../assets/images/9-final.png'
+
+// Real per-destination photo sets, used for each detail page's collage.
+import mahabaleshwarGallery1 from '../../images/mahabaleshwar-1.png'
+import mahabaleshwarGallery2 from '../../images/mahabaleshwar-2.png'
+import mahabaleshwarGallery3 from '../../images/mahabaleshwar-3.png'
+import mahabaleshwarGallery4 from '../../images/mahabaleshwar-4.png'
+import mahabaleshwarGallery5 from '../../images/mahabaleshwar-5.png'
+import tarkarliGallery1 from '../../images/tarkarli-1.png'
+import tarkarliGallery2 from '../../images/tarkarli-2.png'
+import tarkarliGallery3 from '../../images/tarkarli-3.png'
+import tarkarliGallery4 from '../../images/tarkarli-4.png'
+import tarkarliGallery5 from '../../images/tarkarli-5.png'
+import puneGallery1 from '../../images/pune-1.png'
+import puneGallery2 from '../../images/pune-2.png'
+import puneGallery3 from '../../images/pune-3.png'
+import puneGallery4 from '../../images/pune-4.png'
+import puneGallery5 from '../../images/pune-5.png'
 
 // Single source of truth for the escapes list — the homepage teaser
 // (Escapes.jsx), the full listing (pages/EscapesPage.jsx), and each detail
@@ -84,7 +95,13 @@ export const escapes = [
       'Lunches & dinners (except Day 5)',
       'Personal spending',
     ],
-    gallery: [mountainsImage, wildlifeImage],
+    gallery: [
+      mahabaleshwarGallery1,
+      mahabaleshwarGallery2,
+      mahabaleshwarGallery3,
+      mahabaleshwarGallery4,
+      mahabaleshwarGallery5,
+    ],
   },
   {
     slug: 'tarkarli',
@@ -150,7 +167,7 @@ export const escapes = [
       'Lunches & dinners',
       'Personal spending',
     ],
-    gallery: [beachesImage, cityImage],
+    gallery: [tarkarliGallery1, tarkarliGallery2, tarkarliGallery3, tarkarliGallery4, tarkarliGallery5],
   },
   {
     slug: 'pune',
@@ -191,6 +208,6 @@ export const escapes = [
     ],
     inclusions: ['Shared accommodation', 'Coworking day pass', 'Daily breakfast', 'One group dinner'],
     exclusions: ['Travel to/from Pune', 'Travel insurance', 'Lunch (Day 1)', 'Personal spending'],
-    gallery: [heroImage, closingImage],
+    gallery: [puneGallery1, puneGallery2, puneGallery3, puneGallery4, puneGallery5],
   },
 ]

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Eyebrow from '../ui/Eyebrow'
+import { supabase } from '../../lib/supabase'
 
 const EASE = [0.22, 1, 0.36, 1]
 
@@ -34,23 +35,34 @@ const fieldItem = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } },
 }
 
-// Placeholder for the future Supabase insert — swap the body of this
-// function out and the surrounding submit flow stays the same.
-async function submitToWaitlist(formData) {
-  await new Promise((resolve) => setTimeout(resolve, 600))
-  return { data: formData, error: null }
-}
-
 function Waitlist() {
-  const [count, setCount] = useState(247)
+  const [count, setCount] = useState(null)
   const [formData, setFormData] = useState(initialFormData)
-  const [status, setStatus] = useState('idle') // idle | submitting | submitted
+  const [status, setStatus] = useState('idle') // idle | submitting | submitted | error
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCount((c) => c + 1)
-    }, 6000)
-    return () => clearInterval(interval)
+    let interval
+    // Guards against React StrictMode's dev-only double-invoke of this
+    // effect: without it, the first invocation's async loadCount can still
+    // resolve and start its own interval AFTER cleanup already ran (since
+    // `interval` was still undefined when cleanup fired), leaking a second,
+    // uncleaned interval that doubles the ticking rate.
+    let cancelled = false
+
+    async function loadCount() {
+      const { data, error } = await supabase.rpc('get_waitlist_count')
+      if (cancelled) return
+      setCount(!error && typeof data === 'number' ? data : 0)
+      // Subtle client-side ticker for visual polish, seeded from the real count.
+      interval = setInterval(() => setCount((c) => c + 1), 6000)
+    }
+
+    loadCount()
+    return () => {
+      cancelled = true
+      clearInterval(interval)
+    }
   }, [])
 
   const handleChange = (field) => (event) => {
@@ -69,12 +81,27 @@ function Waitlist() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     setStatus('submitting')
-    try {
-      await submitToWaitlist(formData)
-      setStatus('submitted')
-    } catch {
-      setStatus('idle')
+    setErrorMessage('')
+
+    const { error } = await supabase.from('waitlist').insert({
+      name: formData.name,
+      email: formData.email,
+      city: formData.city,
+      occupation: formData.role,
+      interest: formData.interests.join(', '),
+    })
+
+    if (error) {
+      setStatus('error')
+      setErrorMessage(
+        error.code === '23505'
+          ? "That email's already on the list."
+          : 'Something went wrong. Please try again.'
+      )
+      return
     }
+
+    setStatus('submitted')
   }
 
   return (
@@ -90,7 +117,7 @@ function Waitlist() {
           <Eyebrow tone="waitlist">Cohort Zero</Eyebrow>
 
           <h2 className="font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl">
-            The Next <span className="text-coral">Cohort</span> Is Forming
+            The Next <span className="font-accent italic text-coral">Cohort</span> Is Forming
           </h2>
 
           <div className="mt-10">
@@ -102,7 +129,7 @@ function Waitlist() {
                 transition={{ duration: 0.4, ease: EASE }}
                 className="inline-block font-display text-6xl font-bold text-coral sm:text-7xl"
               >
-                {count.toLocaleString()}
+                {count === null ? '—' : count.toLocaleString()}
               </motion.span>
             </AnimatePresence>
             <p className="mt-2 font-sans text-sm uppercase tracking-[0.25em] text-charcoal/50">
@@ -112,7 +139,7 @@ function Waitlist() {
         </motion.div>
 
         <motion.div variants={fadeUp} className="mx-auto mt-14 max-w-xl text-left">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {status === 'submitted' ? (
               <motion.div
                 key="success"
@@ -248,6 +275,15 @@ function Waitlist() {
                       })}
                     </div>
                   </motion.div>
+
+                  {status === 'error' && (
+                    <motion.p
+                      variants={fieldItem}
+                      className="font-sans text-sm font-medium text-red-600"
+                    >
+                      {errorMessage}
+                    </motion.p>
+                  )}
 
                   <motion.button
                     variants={fieldItem}

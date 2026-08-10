@@ -42,7 +42,7 @@ function Escapes() {
           variants={headingVariant}
           className="text-center font-display text-4xl font-bold leading-tight text-charcoal sm:text-5xl"
         >
-          Our First <span className="text-coral">Escapes</span>
+          Our First <span className="font-accent italic text-coral">Escapes</span>
         </motion.h2>
 
         <motion.div

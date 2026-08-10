@@ -158,7 +158,7 @@ function FAQ() {
           variants={headingVariant}
           className="text-center font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl"
         >
-          Common <span className="text-coral">Questions</span>
+          Common <span className="font-accent italic text-coral">Questions</span>
         </motion.h2>
 
         <motion.div

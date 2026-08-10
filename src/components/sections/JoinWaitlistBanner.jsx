@@ -11,7 +11,8 @@ function JoinWaitlistBanner() {
         className="mx-auto max-w-4xl rounded-3xl border border-coral/20 bg-butter px-8 py-12 text-center shadow-lg shadow-charcoal/10 sm:px-12 sm:py-16"
       >
         <h2 className="font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl">
-          Don&apos;t Miss the <span className="text-coral">First Cohort</span>
+          Don&apos;t Miss the{' '}
+          <span className="font-accent italic text-coral">First Cohort</span>
         </h2>
 
         <p className="mx-auto mt-4 max-w-md font-sans text-charcoal/70">

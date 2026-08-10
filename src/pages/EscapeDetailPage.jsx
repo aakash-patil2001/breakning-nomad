@@ -117,6 +117,37 @@ function PlusIcon(props) {
   )
 }
 
+function CollageImage({ src, alt, className = '' }) {
+  return (
+    <div className={`group relative overflow-hidden rounded-2xl ${className}`}>
+      <img
+        src={src}
+        alt={alt}
+        className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+      />
+    </div>
+  )
+}
+
+// Asymmetric 1-large + 4-small grid on desktop (one big featured shot on the
+// left, a 2x2 of the rest on the right); collapses to a full-width featured
+// shot stacked over a simple 2-column grid on mobile.
+function DestinationCollage({ images, name }) {
+  const [featured, ...rest] = images
+  return (
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:grid-rows-2 sm:gap-4 sm:h-[28rem] md:h-[34rem]">
+      <CollageImage
+        src={featured}
+        alt={name}
+        className="col-span-2 aspect-[16/10] sm:col-span-2 sm:row-span-2 sm:aspect-auto"
+      />
+      {rest.map((src, index) => (
+        <CollageImage key={index} src={src} alt={name} className="aspect-square sm:aspect-auto" />
+      ))}
+    </div>
+  )
+}
+
 function ItineraryDay({ day, isOpen, onToggle }) {
   return (
     <div className="border-b border-charcoal/10 last:border-b-0">
@@ -187,19 +218,26 @@ function EscapeDetailPage() {
 
       <section className="px-6 sm:px-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="relative mx-auto aspect-[4/5] w-full max-w-6xl overflow-hidden rounded-3xl border border-charcoal/10 shadow-lg shadow-charcoal/10 sm:aspect-[16/9]"
+          className="mx-auto max-w-6xl pt-8 sm:pt-10"
         >
-          <img src={escape.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/10 to-transparent" />
-          <span className="absolute left-6 top-6 rounded-full bg-white px-3.5 py-1.5 font-sans text-xs font-semibold tracking-wide text-charcoal shadow-sm sm:left-8 sm:top-8">
+          <span className="inline-flex rounded-full bg-white px-3.5 py-1.5 font-sans text-xs font-semibold tracking-wide text-charcoal shadow-sm">
             {escape.tag}
           </span>
-          <h1 className="absolute bottom-6 left-6 right-6 font-display text-3xl font-bold leading-tight text-white sm:bottom-10 sm:left-10 sm:text-5xl">
+          <h1 className="mt-4 font-display text-3xl font-bold leading-tight text-charcoal sm:text-5xl">
             {escape.name}
           </h1>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
+          className="mx-auto mt-6 max-w-6xl"
+        >
+          <DestinationCollage images={escape.gallery} name={escape.name} />
         </motion.div>
       </section>
 
@@ -277,14 +315,6 @@ function EscapeDetailPage() {
                 ))}
               </ul>
             </div>
-          </div>
-
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-2">
-            {escape.gallery.map((photo, index) => (
-              <div key={index} className="aspect-[4/3] overflow-hidden rounded-2xl">
-                <img src={photo} alt="" className="h-full w-full object-cover" />
-              </div>
-            ))}
           </div>
         </motion.div>
 

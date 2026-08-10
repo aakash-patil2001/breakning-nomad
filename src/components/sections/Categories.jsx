@@ -1,16 +1,20 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Eyebrow from '../ui/Eyebrow'
 import mountainsImage from '../../assets/images/2-final.png'
 import beachesImage from '../../assets/images/3-final.png'
 import cityImage from '../../assets/images/4-final.png'
-import wildlifeImage from '../../assets/images/5-final.png'
+// import wildlifeImage from '../../assets/images/5-final.png'
 import postcardImage1 from '../../assets/images/6-final.png'
 import postcardImage2 from '../../assets/images/8-final.png'
 
+// `tag` matches the escape tag values in `data/escapes.js`, so a click can
+// deep-link into the escapes page pre-filtered to that category.
 const categories = [
   {
     name: 'Mountains',
+    tag: 'Mountains',
     image: mountainsImage,
     teaser: "Altitude adjusted, deadlines intact — we're scouting basecamps.",
     Icon: (props) => (
@@ -29,6 +33,7 @@ const categories = [
   },
   {
     name: 'Beaches',
+    tag: 'Beach',
     image: beachesImage,
     teaser: 'Trade your desk for the shoreline — spots dropping soon.',
     Icon: (props) => (
@@ -49,6 +54,7 @@ const categories = [
   },
   {
     name: 'City',
+    tag: 'City',
     image: cityImage,
     teaser: 'Skyline views, standup calls — lining up the best stays.',
     Icon: (props) => (
@@ -68,28 +74,30 @@ const categories = [
       </svg>
     ),
   },
-  {
-    name: 'Wildlife',
-    image: wildlifeImage,
-    teaser: 'Wild mornings, warm wifi — scouting the good spots.',
-    Icon: (props) => (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        {...props}
-      >
-        <ellipse cx="12" cy="15" rx="4.5" ry="3.5" />
-        <circle cx="6.5" cy="9" r="1.6" />
-        <circle cx="10.3" cy="6.3" r="1.6" />
-        <circle cx="13.7" cy="6.3" r="1.6" />
-        <circle cx="17.5" cy="9" r="1.6" />
-      </svg>
-    ),
-  },
+  // Wildlife: no finalized destination yet — bring back once one is locked in.
+  // {
+  //   name: 'Wildlife',
+  //   tag: 'Wildlife',
+  //   image: wildlifeImage,
+  //   teaser: 'Wild mornings, warm wifi — scouting the good spots.',
+  //   Icon: (props) => (
+  //     <svg
+  //       viewBox="0 0 24 24"
+  //       fill="none"
+  //       stroke="currentColor"
+  //       strokeWidth={1.5}
+  //       strokeLinecap="round"
+  //       strokeLinejoin="round"
+  //       {...props}
+  //     >
+  //       <ellipse cx="12" cy="15" rx="4.5" ry="3.5" />
+  //       <circle cx="6.5" cy="9" r="1.6" />
+  //       <circle cx="10.3" cy="6.3" r="1.6" />
+  //       <circle cx="13.7" cy="6.3" r="1.6" />
+  //       <circle cx="17.5" cy="9" r="1.6" />
+  //     </svg>
+  //   ),
+  // },
 ]
 
 const sectionContainer = {
@@ -195,6 +203,7 @@ function CategoryCard({
   isFlipped,
   setFlipped,
   onSelect,
+  onExplore,
   centerHovered,
   setCenterHovered,
 }) {
@@ -230,7 +239,7 @@ function CategoryCard({
             type="button"
             className="relative h-96 w-72 appearance-none rounded-full border-0 bg-transparent p-0 sm:h-[27rem] sm:w-80 md:h-[30rem] md:w-96 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             style={{ perspective: 1200 }}
-            onClick={isCenter ? () => setFlipped((f) => !f) : onSelect}
+            onClick={isCenter ? () => onExplore(category) : onSelect}
             onMouseEnter={
               isCenter
                 ? () => {
@@ -247,7 +256,7 @@ function CategoryCard({
                   }
                 : undefined
             }
-            aria-label={isCenter ? `${name} — flip for details` : `Show ${name}`}
+            aria-label={isCenter ? `Explore ${name} escapes` : `Show ${name}`}
           >
             <motion.div
               className="relative h-full w-full"
@@ -295,6 +304,7 @@ function CategoryCard({
 }
 
 function Categories() {
+  const navigate = useNavigate()
   const [active, setActive] = useState(0)
   const [flipped, setFlipped] = useState(false)
   const [centerHovered, setCenterHovered] = useState(false)
@@ -303,6 +313,10 @@ function Categories() {
   const goTo = (index) => {
     setActive(((index % len) + len) % len)
     setFlipped(false)
+  }
+
+  const handleExplore = (category) => {
+    navigate(`/escapes?category=${encodeURIComponent(category.tag)}`)
   }
 
   const handleDragEnd = (_, info) => {
@@ -341,7 +355,7 @@ function Categories() {
           variants={headingVariant}
           className="text-center font-display text-4xl font-bold leading-tight text-charcoal sm:text-5xl"
         >
-          Discover <span className="text-coral">Adventures</span> That Suit You
+          Discover <span className="font-accent italic text-coral">Adventures</span> That Suit You
         </motion.h2>
 
         <motion.div
@@ -363,6 +377,7 @@ function Categories() {
                 isFlipped={flipped}
                 setFlipped={setFlipped}
                 onSelect={() => goTo(index)}
+                onExplore={handleExplore}
                 centerHovered={centerHovered}
                 setCenterHovered={setCenterHovered}
               />

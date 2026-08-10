@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const navLinks = [
-  { label: 'Escapes', href: '#escapes' },
+  { label: 'Escapes', to: '/escapes' },
   { label: 'How It Works', href: '#howweplan' },
   { label: 'Join Waitlist', href: '#waitlist' },
 ]
@@ -87,16 +88,27 @@ function HeroNav() {
                 transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute right-0 top-full z-20 mt-3 w-48 overflow-hidden rounded-2xl border border-charcoal/10 bg-white shadow-lg shadow-charcoal/20"
               >
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={(event) => handleNavClick(event, link.href)}
-                    className="block px-5 py-3 font-sans text-sm font-medium text-charcoal transition-colors hover:bg-blush/60"
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {navLinks.map((link) =>
+                  link.to ? (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      onClick={() => setOpen(false)}
+                      className="block px-5 py-3 font-sans text-sm font-medium text-charcoal transition-colors hover:bg-blush/60"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={(event) => handleNavClick(event, link.href)}
+                      className="block px-5 py-3 font-sans text-sm font-medium text-charcoal transition-colors hover:bg-blush/60"
+                    >
+                      {link.label}
+                    </a>
+                  )
+                )}
               </motion.div>
             </>
           )}

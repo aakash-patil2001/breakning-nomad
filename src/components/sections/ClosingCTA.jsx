@@ -41,13 +41,13 @@ function ClosingCTA() {
           className="font-display text-[clamp(1.75rem,5vw,3.5rem)] leading-tight text-white"
         >
           One day you&apos;ll answer a Monday meeting from{' '}
-          <span className="font-bold text-coral">
+          <span className="font-accent italic text-coral">
             somewhere that doesn&apos;t feel like work
           </span>
           .
         </motion.h2>
 
-        <motion.p variants={item} className="mt-6 font-sans text-base text-white/80 sm:text-lg">
+        <motion.p variants={item} className="mt-6 font-display text-base text-white/80 sm:text-lg">
           We hope Breaking Nomad was the reason.
         </motion.p>
 

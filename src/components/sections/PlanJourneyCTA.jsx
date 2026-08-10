@@ -49,7 +49,8 @@ function PlanJourneyCTA() {
         <Eyebrow tone="plan">No Forms, Just Vibes</Eyebrow>
 
         <h2 className="font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl">
-          Ready to Plan Your <span className="text-coral">Dream Journey</span>?
+          Ready to Plan Your{' '}
+          <span className="font-accent italic text-coral">Dream Journey</span>?
         </h2>
 
         <p className="mx-auto mt-4 max-w-md font-sans text-charcoal/70">

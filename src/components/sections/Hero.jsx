@@ -51,7 +51,7 @@ function Hero() {
 
         <motion.p
           variants={item}
-          className="mt-6 font-sans text-sm font-bold uppercase tracking-[0.3em] text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)] sm:text-base"
+          className="mt-6 font-display text-sm font-bold uppercase tracking-[0.3em] text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)] sm:text-base"
         >
           Work Stays, Everything Else Changes
         </motion.p>

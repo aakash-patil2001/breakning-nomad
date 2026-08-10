@@ -85,7 +85,7 @@ function HowWePlan() {
           variants={headingVariant}
           className="text-center font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl"
         >
-          How We Plan Your <span className="text-coral">Journey</span>
+          How We Plan Your <span className="font-accent italic text-coral">Journey</span>
         </motion.h2>
 
         <motion.div

@@ -1,49 +1,49 @@
-import { motion } from 'framer-motion'
-import workationPhoto from '../../../images/image-1.jpg'
-import campingPhoto from '../../../images/image-2.jpg'
-import flightPhoto from '../../../images/image-3.jpg'
-import balconyPhoto from '../../../images/image-4.jpg'
-import beachCafePhoto from '../../../images/image-5.jpg'
-import skylinePhoto from '../../../images/image-6.jpg'
-import restaurantPhoto from '../../../images/image-7.jpg'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useAnimationFrame, useMotionValue } from 'framer-motion'
+import mahabaleshwar1 from '../../../images/mahabaleshwar-1.png'
+import mahabaleshwar2 from '../../../images/mahabaleshwar-2.png'
+import mahabaleshwar3 from '../../../images/mahabaleshwar-3.png'
+import mahabaleshwar4 from '../../../images/mahabaleshwar-4.png'
+import mahabaleshwar5 from '../../../images/mahabaleshwar-5.png'
+import tarkarli1 from '../../../images/tarkarli-1.png'
+import tarkarli2 from '../../../images/tarkarli-2.png'
+import tarkarli3 from '../../../images/tarkarli-3.png'
+import tarkarli4 from '../../../images/tarkarli-4.png'
+import tarkarli5 from '../../../images/tarkarli-5.png'
+import pune1 from '../../../images/pune-1.png'
+import pune2 from '../../../images/pune-2.png'
+import pune3 from '../../../images/pune-3.png'
+import pune4 from '../../../images/pune-4.png'
+import pune5 from '../../../images/pune-5.png'
 
-// 8 slots, 7 source photos — the flight shot repeats once (slots 2 and 8,
-// far enough apart in the looped track to never land next to itself) so
-// the existing tilt sequence/spacing stays exactly as it was.
+// Same tilt cadence as the old 8-slot version, just cycled across all 15
+// real destination photos.
+const ROTATIONS = [-5, 4, -4, 6, -6, 3, -3]
+
 const photos = [
-  {
-    src: workationPhoto,
-    rotate: -5,
-  },
-  {
-    src: flightPhoto,
-    rotate: 4,
-  },
-  {
-    src: campingPhoto,
-    rotate: -4,
-  },
-  {
-    src: skylinePhoto,
-    rotate: 6,
-  },
-  {
-    src: beachCafePhoto,
-    rotate: -6,
-  },
-  {
-    src: balconyPhoto,
-    rotate: 3,
-  },
-  {
-    src: restaurantPhoto,
-    rotate: -3,
-  },
-  {
-    src: flightPhoto,
-    rotate: 5,
-  },
-]
+  mahabaleshwar1,
+  mahabaleshwar2,
+  mahabaleshwar3,
+  mahabaleshwar4,
+  mahabaleshwar5,
+  tarkarli1,
+  tarkarli2,
+  tarkarli3,
+  tarkarli4,
+  tarkarli5,
+  pune1,
+  pune2,
+  pune3,
+  pune4,
+  pune5,
+].map((src, index) => ({ src, rotate: ROTATIONS[index % ROTATIONS.length] }))
+
+// One full loop of `photos` plays over this many seconds while idle —
+// matches the original marquee's speed.
+const LOOP_DURATION = 45
+// Rendered back-to-back this many times so a single drag gesture (in either
+// direction) never runs past the duplicated content before it wraps.
+const REPEATS = 3
 
 function Polaroid({ src, rotate }) {
   return (
@@ -57,17 +57,58 @@ function Polaroid({ src, rotate }) {
 }
 
 function PhotoMarquee() {
-  // Track renders the photo set twice back-to-back; translating by exactly
-  // -50% of the track's own width lands on an identical copy, so the loop
-  // has no visible seam regardless of actual rendered pixel width.
-  const track = [...photos, ...photos]
+  const trackRef = useRef(null)
+  const isDragging = useRef(false)
+  const [setWidth, setSetWidth] = useState(0)
+  const x = useMotionValue(0)
+
+  useEffect(() => {
+    const measure = () => {
+      if (!trackRef.current) return
+      const width = trackRef.current.scrollWidth / REPEATS
+      setSetWidth(width)
+      // Start centered in the repeated track so a drag has equal room to
+      // travel either direction before reaching an edge copy.
+      x.set(-width)
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [x])
+
+  useAnimationFrame((_, delta) => {
+    if (isDragging.current || !setWidth) return
+    const speed = setWidth / LOOP_DURATION
+    let next = x.get() - (speed * delta) / 1000
+    // One full `setWidth` further than the centered start — wrap back by
+    // exactly one copy, which is pixel-identical, so the loop is seamless.
+    if (next <= -setWidth * 2) next += setWidth
+    x.set(next)
+  })
+
+  const track = Array.from({ length: REPEATS }, () => photos).flat()
 
   return (
     <section className="overflow-hidden bg-cream py-14 sm:py-16">
       <motion.div
-        className="flex w-max items-center gap-8 sm:gap-10"
-        animate={{ x: ['0%', '-50%'] }}
-        transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
+        ref={trackRef}
+        className="flex w-max cursor-grab items-center gap-8 active:cursor-grabbing sm:gap-10"
+        style={{ x }}
+        drag="x"
+        dragMomentum={false}
+        onDragStart={() => {
+          isDragging.current = true
+        }}
+        onDragEnd={() => {
+          isDragging.current = false
+          if (!setWidth) return
+          // Fold back into the same centered range the auto-scroll uses —
+          // an exact multiple of `setWidth` away is pixel-identical, so the
+          // auto-scroll resumes from exactly where the drag left off.
+          let wrapped = x.get() % setWidth
+          if (wrapped > 0) wrapped -= setWidth
+          x.set(wrapped - setWidth)
+        }}
       >
         {track.map((photo, index) => (
           <Polaroid key={`${photo.src}-${index}`} src={photo.src} rotate={photo.rotate} />

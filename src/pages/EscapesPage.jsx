@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import heroImage from '../assets/images/1-final.png'
 import cityImage from '../assets/images/4-final.png'
 import wildlifeImage from '../assets/images/5-final.png'
 import PageNav from '../components/ui/PageNav'
 import EscapeCard from '../components/ui/EscapeCard'
+import { supabase } from '../lib/supabase'
 import { escapes } from '../data/escapes'
 
 const EASE = [0.22, 1, 0.36, 1]
@@ -31,13 +33,6 @@ const cardVariant = {
 
 const categories = ['All Escapes', ...new Set(escapes.map((escape) => escape.tag))]
 
-// Placeholder for a future email/backend hookup — mirrors the same
-// simulate-then-resolve shape as the waitlist form's submit function.
-async function submitCustomRequest(destination) {
-  await new Promise((resolve) => setTimeout(resolve, 600))
-  return { data: { destination }, error: null }
-}
-
 function ArrowIcon(props) {
   return (
     <svg
@@ -56,18 +51,25 @@ function ArrowIcon(props) {
 
 function CustomRequestCard() {
   const [destination, setDestination] = useState('')
-  const [status, setStatus] = useState('idle') // idle | submitting | submitted
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState('idle') // idle | submitting | submitted | error
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    if (!destination.trim()) return
+    if (!destination.trim() || !email.trim()) return
     setStatus('submitting')
-    try {
-      await submitCustomRequest(destination)
-      setStatus('submitted')
-    } catch {
-      setStatus('idle')
+    setErrorMessage('')
+
+    const { error } = await supabase.from('custom_requests').insert({ destination, email })
+
+    if (error) {
+      setStatus('error')
+      setErrorMessage('Something went wrong. Please try again.')
+      return
     }
+
+    setStatus('submitted')
   }
 
   return (
@@ -101,30 +103,42 @@ function CustomRequestCard() {
             Got it — we&apos;ll be in touch about {destination}.
           </p>
         ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center"
-          >
-            <input
-              type="text"
-              required
-              value={destination}
-              onChange={(event) => setDestination(event.target.value)}
-              placeholder="Where do you want to go?"
-              aria-label="Where do you want to go?"
-              className="w-full rounded-full border border-charcoal/15 bg-white px-5 py-3 font-sans text-sm text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral sm:flex-1"
-            />
-            <motion.button
-              type="submit"
-              disabled={status === 'submitting'}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-coral px-6 py-3 font-sans text-sm font-semibold tracking-wide text-cream transition-colors hover:bg-coral-dark disabled:opacity-60"
-            >
-              {status === 'submitting' ? 'Sending…' : 'Request It'}
-              <ArrowIcon className="h-4 w-4" />
-            </motion.button>
+          <form onSubmit={handleSubmit} className="mt-5 space-y-3">
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <input
+                type="text"
+                required
+                value={destination}
+                onChange={(event) => setDestination(event.target.value)}
+                placeholder="Where do you want to go?"
+                aria-label="Where do you want to go?"
+                className="w-full rounded-full border border-charcoal/15 bg-white px-5 py-3 font-sans text-sm text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral sm:flex-1"
+              />
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="Your email"
+                aria-label="Your email"
+                className="w-full rounded-full border border-charcoal/15 bg-white px-5 py-3 font-sans text-sm text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral sm:flex-1"
+              />
+              <motion.button
+                type="submit"
+                disabled={status === 'submitting'}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-coral px-6 py-3 font-sans text-sm font-semibold tracking-wide text-cream transition-colors hover:bg-coral-dark disabled:opacity-60"
+              >
+                {status === 'submitting' ? 'Sending…' : 'Request It'}
+                <ArrowIcon className="h-4 w-4" />
+              </motion.button>
+            </div>
+
+            {status === 'error' && (
+              <p className="font-sans text-sm font-medium text-red-600">{errorMessage}</p>
+            )}
           </form>
         )}
       </div>
@@ -133,7 +147,17 @@ function CustomRequestCard() {
 }
 
 function EscapesPage() {
+  const [searchParams] = useSearchParams()
   const [activeCategory, setActiveCategory] = useState('All Escapes')
+
+  // Lets category cards on the homepage deep-link straight into a filtered
+  // view, e.g. /escapes?category=Beach.
+  useEffect(() => {
+    const requested = searchParams.get('category')
+    if (requested && categories.includes(requested)) {
+      setActiveCategory(requested)
+    }
+  }, [searchParams])
 
   const filteredEscapes =
     activeCategory === 'All Escapes'

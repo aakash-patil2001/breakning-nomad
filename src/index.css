@@ -2,7 +2,10 @@
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Switzer", ui-sans-serif, system-ui, sans-serif;
+  /* Classic serif accent (system font, no loading required) — specific
+     words within headings only, always paired with italic. */
+  --font-accent: "Times New Roman", Times, serif;
 
   /* Pastel brand palette */
   --color-cream: #faf3e8;
