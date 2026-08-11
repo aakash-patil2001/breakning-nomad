@@ -45,7 +45,7 @@ function Footer() {
           {/* Wordmark / tagline / quote / category pills */}
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
             <span className="font-display text-2xl font-bold leading-none tracking-tight text-white sm:text-3xl">
-              Breaking{' '}
+              The Breaking{' '}
               <span className="whitespace-nowrap">
                 <span className="font-normal text-white/50">No</span>
                 <span className="font-black text-coral">MAD</span>
@@ -117,7 +117,7 @@ function Footer() {
                 href="https://instagram.com/the.breaking.nomad"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Breaking Nomad on Instagram"
+                aria-label="The Breaking Nomad on Instagram"
                 className="flex items-center gap-2 font-sans text-sm text-white/70 transition-colors hover:text-coral"
               >
                 <InstagramIcon className="h-4 w-4" />
@@ -130,7 +130,7 @@ function Footer() {
         {/* Divider + copyright bar */}
         <div className="mt-12 flex flex-col items-center gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-sans text-xs text-white/40">
-            © 2026 Breaking Nomad. All rights reserved.
+            © 2026 The Breaking Nomad. All rights reserved.
           </p>
           <div className="flex items-center gap-6 font-sans text-xs text-white/40">
             <a href="#privacy-policy" className="transition-colors hover:text-white/70">

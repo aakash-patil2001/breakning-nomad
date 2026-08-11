@@ -43,7 +43,7 @@ const faqs = [
   {
     question: 'What does it cost, and how do I pay?',
     answer:
-      'Pricing covers your stay, workspace, and included activities, and varies by destination and trip length. You can pay upfront or in installments — full pricing is shared as soon as a cohort opens up.',
+      "We're still finalizing pricing — our goal is the best experience at the best price possible. Full pricing and payment details will be shared as soon as a cohort opens up.",
   },
 ]
 
@@ -193,7 +193,7 @@ function FAQ() {
               href="https://instagram.com/the_breaking_nomad"
               target="_blank"
               rel="noreferrer"
-              aria-label="Breaking Nomad on Instagram"
+              aria-label="The Breaking Nomad on Instagram"
               className="flex items-center gap-2 font-sans text-sm font-medium text-charcoal transition-colors hover:text-coral dark:text-white"
             >
               <InstagramIcon className="h-5 w-5 shrink-0" />

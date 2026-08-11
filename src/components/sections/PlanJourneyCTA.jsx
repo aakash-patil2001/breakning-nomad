@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import Eyebrow from '../ui/Eyebrow'
 
 const MAILTO_HREF = `mailto:hello@breakingnomad.com?subject=${encodeURIComponent(
-  'Planning my next trip with Breaking Nomad',
+  'Planning my next trip with The Breaking Nomad',
 )}`
 
 const stackedPhotos = [

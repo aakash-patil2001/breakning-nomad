@@ -90,7 +90,7 @@ function AboutPage() {
             variants={fadeUp}
             className="mx-auto mt-5 max-w-xl font-sans text-base text-charcoal/70 dark:text-white/70 sm:text-lg"
           >
-            Why we built Breaking Nomad — and who it's actually for.
+            Why we built The Breaking Nomad — and who it's actually for.
           </motion.p>
         </motion.div>
       </section>
@@ -105,7 +105,7 @@ function AboutPage() {
           className="mx-auto max-w-2xl text-center"
         >
           <motion.div variants={fadeUp}>
-            <Eyebrow tone="friction">Before Breaking Nomad</Eyebrow>
+            <Eyebrow tone="friction">Before The Breaking Nomad</Eyebrow>
           </motion.div>
           <motion.h2
             variants={fadeUp}
@@ -148,7 +148,7 @@ function AboutPage() {
 
           <motion.div variants={fadeUp} className="mx-auto mt-8 max-w-lg space-y-4 text-left">
             <p className="font-sans text-sm leading-relaxed text-charcoal/70 dark:text-white/70 sm:text-base">
-              Breaking Nomad brings together a small group of remote workers and takes them
+              The Breaking Nomad brings together a small group of remote workers and takes them
               to one destination for two to four weeks.
             </p>
             <p className="font-sans text-sm leading-relaxed text-charcoal/70 dark:text-white/70 sm:text-base">

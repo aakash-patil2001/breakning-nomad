@@ -334,11 +334,13 @@ function EscapeDetailPage() {
         <motion.div variants={fadeUp} className="lg:sticky lg:top-8">
           <div className="rounded-2xl bg-charcoal px-6 py-6 text-cream sm:px-8 sm:py-8">
             <p className="font-sans text-xs font-semibold uppercase tracking-wide text-cream/60">
-              Starting from
+              Pricing
             </p>
-            <p className="mt-1 font-display text-4xl font-bold">
-              ${escape.price}
-              <span className="ml-1 font-sans text-base font-normal text-cream/60">/person</span>
+            <p className="mt-1 font-display text-2xl font-bold leading-snug sm:text-3xl">
+              Coming soon
+            </p>
+            <p className="mt-2 font-sans text-sm text-cream/70">
+              We&apos;re working to bring you the best experience at the best price possible.
             </p>
           </div>
 

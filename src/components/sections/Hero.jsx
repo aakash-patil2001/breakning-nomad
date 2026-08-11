@@ -54,7 +54,7 @@ function Hero() {
           variants={item}
           className="font-display text-[clamp(2.75rem,9vw,7rem)] font-black leading-[0.95] tracking-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
         >
-          Breaking Nomad
+          The Breaking Nomad
         </motion.h1>
 
         <motion.p

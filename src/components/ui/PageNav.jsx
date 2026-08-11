@@ -10,7 +10,7 @@ function PageNav() {
         to="/"
         className="font-display text-lg font-bold tracking-tight text-charcoal dark:text-white sm:text-xl"
       >
-        Breaking <span className="text-coral">Nomad</span>
+        The Breaking <span className="text-coral">Nomad</span>
       </Link>
       <Link
         to="/"

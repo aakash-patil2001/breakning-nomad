@@ -91,7 +91,7 @@ function HeroNav() {
   return (
     <div className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-5 sm:px-10 sm:py-6">
       <span className="font-display text-base font-bold tracking-tight text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)] sm:text-lg">
-        BREAKING NOMAD
+        THE BREAKING NOMAD
       </span>
 
       <div className="flex items-center gap-3">

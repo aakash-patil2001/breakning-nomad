@@ -31,17 +31,9 @@ function EscapeCard({ escape, variants = defaultVariant }) {
 
           <div className="my-4 border-t border-dashed border-charcoal/20 dark:border-white/15" />
 
-          <div className="flex items-center justify-between">
-            <p className="font-display text-2xl font-bold text-charcoal dark:text-white">
-              ${escape.price}
-              <span className="ml-1 font-sans text-sm font-normal text-charcoal/50 dark:text-white/50">
-                /person
-              </span>
-            </p>
-            <span className="rounded-full bg-charcoal px-3.5 py-1.5 font-sans text-xs font-semibold text-cream dark:bg-cream dark:text-charcoal">
-              {escape.duration}
-            </span>
-          </div>
+          <p className="font-display text-sm font-semibold leading-snug text-charcoal/60 dark:text-white/60">
+            Pricing coming soon — best experience at the best price possible.
+          </p>
         </div>
       </Link>
     </motion.div>

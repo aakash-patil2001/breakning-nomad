@@ -48,7 +48,7 @@ function ClosingCTA() {
         </motion.h2>
 
         <motion.p variants={item} className="mt-6 font-display text-base text-white/80 sm:text-lg">
-          We hope Breaking Nomad was the reason.
+          We hope The Breaking Nomad was the reason.
         </motion.p>
 
         <motion.div variants={item} className="mt-10">
