@@ -2,20 +2,20 @@ import { motion } from 'framer-motion'
 
 function JoinWaitlistBanner() {
   return (
-    <section className="bg-cream px-6 py-16 sm:py-20">
+    <section className="bg-cream px-6 py-16 dark:bg-dark-base sm:py-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto max-w-4xl rounded-3xl border border-coral/20 bg-butter px-8 py-12 text-center shadow-lg shadow-charcoal/10 sm:px-12 sm:py-16"
+        className="mx-auto max-w-4xl rounded-3xl border border-coral/20 bg-butter px-8 py-12 text-center shadow-lg shadow-charcoal/10 dark:border-coral/30 dark:bg-dark-butter dark:shadow-black/30 sm:px-12 sm:py-16"
       >
-        <h2 className="font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl">
+        <h2 className="font-display text-3xl font-bold leading-tight text-charcoal dark:text-white sm:text-4xl">
           Don&apos;t Miss the{' '}
           <span className="font-accent italic text-coral">First Cohort</span>
         </h2>
 
-        <p className="mx-auto mt-4 max-w-md font-sans text-charcoal/70">
+        <p className="mx-auto mt-4 max-w-md font-sans text-charcoal/70 dark:text-white/70">
           Be the first to know when applications open.
         </p>
 

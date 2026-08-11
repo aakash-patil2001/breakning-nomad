@@ -7,6 +7,7 @@ import Escapes from '../components/sections/Escapes'
 import PlanJourneyCTA from '../components/sections/PlanJourneyCTA'
 import TicketStrip from '../components/sections/TicketStrip'
 import HowWePlan from '../components/sections/HowWePlan'
+import WhyUs from '../components/sections/WhyUs'
 import Waitlist from '../components/sections/Waitlist'
 import ClosingCTA from '../components/sections/ClosingCTA'
 import PhotoMarquee from '../components/sections/PhotoMarquee'
@@ -24,6 +25,7 @@ function HomePage() {
       <PlanJourneyCTA />
       <TicketStrip />
       <HowWePlan />
+      <WhyUs />
       <Waitlist />
       <ClosingCTA />
       <PhotoMarquee />

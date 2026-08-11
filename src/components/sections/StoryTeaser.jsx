@@ -231,7 +231,7 @@ function StoryTeaser() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[250vh] bg-[radial-gradient(ellipse_60%_60%_at_50%_40%,#ffffff_0%,#f2f1ec_100%)]"
+      className="relative h-[250vh] bg-[radial-gradient(ellipse_60%_60%_at_50%_40%,#ffffff_0%,#f2f1ec_100%)] dark:bg-[radial-gradient(ellipse_60%_60%_at_50%_40%,#241f1a_0%,#17130f_100%)]"
     >
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
         {/* Decorative flight-path accent, sits behind the text */}
@@ -269,7 +269,7 @@ function StoryTeaser() {
           <motion.div style={{ y: line1Y }}>
             <motion.p
               variants={lineItem}
-              className="font-display text-[clamp(1.25rem,3.6vw,2.4rem)] font-semibold leading-snug text-charcoal"
+              className="font-display text-[clamp(1.25rem,3.6vw,2.4rem)] font-semibold leading-snug text-charcoal dark:text-white"
             >
               There is a version of you that exists outside your apartment.
             </motion.p>
@@ -277,7 +277,7 @@ function StoryTeaser() {
           <motion.div style={{ y: line2Y }} className="mt-3">
             <motion.p
               variants={lineItem}
-              className="font-display text-[clamp(1.25rem,3.6vw,2.4rem)] font-semibold leading-snug text-charcoal/60"
+              className="font-display text-[clamp(1.25rem,3.6vw,2.4rem)] font-semibold leading-snug text-charcoal/60 dark:text-white/60"
             >
               You have met them before — on the last morning of a trip, when the
               return flight felt like a mistake.

@@ -69,7 +69,7 @@ function ArrowConnector() {
 
 function HowWePlan() {
   return (
-    <section id="howweplan" className="bg-blush px-6 py-24 sm:py-28">
+    <section id="howweplan" className="bg-blush px-6 py-24 dark:bg-dark-blush sm:py-28">
       <motion.div
         variants={sectionContainer}
         initial="hidden"
@@ -83,14 +83,14 @@ function HowWePlan() {
 
         <motion.h2
           variants={headingVariant}
-          className="text-center font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl"
+          className="text-center font-display text-3xl font-bold leading-tight text-charcoal dark:text-white sm:text-4xl"
         >
           How We Plan Your <span className="font-accent italic text-coral">Journey</span>
         </motion.h2>
 
         <motion.div
           variants={headingVariant}
-          className="mx-auto mt-10 aspect-[21/9] w-full max-w-4xl overflow-hidden rounded-3xl border border-coral/20 shadow-lg shadow-charcoal/10"
+          className="mx-auto mt-10 aspect-[21/9] w-full max-w-4xl overflow-hidden rounded-3xl border border-coral/20 shadow-lg shadow-charcoal/10 dark:border-coral/30 dark:shadow-black/30"
         >
           <img src={planningImage} alt="" className="h-full w-full object-cover" />
         </motion.div>
@@ -104,15 +104,15 @@ function HowWePlan() {
               <motion.div variants={stepVariant} className="relative">
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute -top-6 left-0 select-none font-display text-7xl font-bold leading-none text-coral/15 sm:text-8xl"
+                  className="pointer-events-none absolute -top-6 left-0 select-none font-display text-7xl font-bold leading-none text-coral/15 dark:text-coral/25 sm:text-8xl"
                 >
                   {step.number}
                 </span>
                 <div className="relative z-10 pt-12 sm:pt-14">
-                  <h3 className="font-sans text-xl font-bold text-charcoal sm:text-2xl">
+                  <h3 className="font-sans text-xl font-bold text-charcoal dark:text-white sm:text-2xl">
                     {step.title}
                   </h3>
-                  <p className="mt-3 max-w-[18rem] font-sans text-sm leading-relaxed text-charcoal/60 sm:text-base">
+                  <p className="mt-3 max-w-[18rem] font-sans text-sm leading-relaxed text-charcoal/60 dark:text-white/60 sm:text-base">
                     {step.description}
                   </p>
                 </div>

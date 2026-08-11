@@ -4,7 +4,9 @@ import { MotionConfig } from 'framer-motion'
 import HomePage from './pages/HomePage'
 import EscapesPage from './pages/EscapesPage'
 import EscapeDetailPage from './pages/EscapeDetailPage'
+import AboutPage from './pages/AboutPage'
 import Footer from './components/sections/Footer'
+import AmbientBackground from './components/effects/AmbientBackground'
 
 // react-router doesn't reset scroll position on navigation the way a normal
 // page load does — without this, clicking a Link while scrolled down a page
@@ -26,10 +28,12 @@ function App() {
   return (
     <MotionConfig reducedMotion="user">
       <ScrollToTop />
+      <AmbientBackground />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/escapes" element={<EscapesPage />} />
         <Route path="/escapes/:slug" element={<EscapeDetailPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
       <Footer />
     </MotionConfig>

@@ -26,13 +26,13 @@ const stackedPhotos = [
 
 function PlanJourneyCTA() {
   return (
-    <section className="bg-white px-6 py-16 sm:py-20">
+    <section className="bg-white px-6 py-16 dark:bg-dark-base sm:py-20">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto max-w-4xl rounded-3xl border border-coral/20 bg-blush px-8 py-12 text-center shadow-lg shadow-charcoal/10 sm:px-12 sm:py-16"
+        className="mx-auto max-w-4xl rounded-3xl border border-coral/20 bg-blush px-8 py-12 text-center shadow-lg shadow-charcoal/10 dark:border-coral/30 dark:bg-dark-blush dark:shadow-black/30 sm:px-12 sm:py-16"
       >
         <div className="mb-8 flex items-center justify-center -space-x-6 sm:-space-x-8">
           {stackedPhotos.map((photo, index) => (
@@ -40,7 +40,7 @@ function PlanJourneyCTA() {
               key={photo.src}
               src={photo.src}
               alt=""
-              className="h-24 w-24 rounded-full border-4 border-cream object-cover shadow-md sm:h-28 sm:w-28"
+              className="h-24 w-24 rounded-full border-4 border-cream object-cover shadow-md dark:border-dark-blush sm:h-28 sm:w-28"
               style={{ transform: `rotate(${photo.rotate}deg)`, zIndex: stackedPhotos.length - index }}
             />
           ))}
@@ -48,12 +48,12 @@ function PlanJourneyCTA() {
 
         <Eyebrow tone="plan">No Forms, Just Vibes</Eyebrow>
 
-        <h2 className="font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl">
+        <h2 className="font-display text-3xl font-bold leading-tight text-charcoal dark:text-white sm:text-4xl">
           Ready to Plan Your{' '}
           <span className="font-accent italic text-coral">Dream Journey</span>?
         </h2>
 
-        <p className="mx-auto mt-4 max-w-md font-sans text-charcoal/70">
+        <p className="mx-auto mt-4 max-w-md font-sans text-charcoal/70 dark:text-white/70">
           Tell us where you want to work from next, and we&apos;ll take it from
           there.
         </p>

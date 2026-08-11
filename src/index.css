@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Tailwind v4 defaults `dark:` to the OS `prefers-color-scheme` media query;
+   this switches it to the classic class-based strategy so the toggle (which
+   sets/removes `.dark` on <html>) is what actually controls it. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Switzer", ui-sans-serif, system-ui, sans-serif;
@@ -18,12 +23,49 @@
   --color-coral: #d9704a;
   --color-coral-dark: #c15f3c;
   --color-plum: #7d4f68;
+
+  /* Dark mode surfaces — deep, warm near-blacks (never pure black) rather
+     than inverted pastels. Each pastel section gets a same-lightness-tier
+     dark tint (a touch lighter than dark-base) so the site's per-section
+     color rhythm still reads in dark mode; hue-agnostic white/cream
+     sections and generic cards use dark-base/dark-card. */
+  --color-dark-base: #17130f;
+  --color-dark-card: #241f1a;
+  --color-dark-blush: #241a1c;
+  --color-dark-sage: #1e2119;
+  --color-dark-sky: #1a1e21;
+  --color-dark-butter: #241f16;
+  --color-dark-peach: #251c15;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* Punched-out "notch" color used by the ticket-strip scallop edges — swaps
+   to the dark page background under `.dark` via plain CSS cascade, so
+   TicketStrip/TicketStrip2 don't need to read theme state in JS just to
+   pick a color for an inline gradient. */
+:root {
+  --scallop-notch: #ffffff;
+}
+
+.dark {
+  --scallop-notch: var(--color-dark-base);
+}
+
 body {
-  @apply bg-cream font-sans text-charcoal antialiased;
+  @apply bg-cream font-sans text-charcoal antialiased dark:bg-dark-base dark:text-white;
+}
+
+/* Sitewide crossfade so toggling themes never reads as a hard flash —
+   scoped to color-ish properties only, so it never fights framer-motion's
+   transform-based animations. */
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
 }

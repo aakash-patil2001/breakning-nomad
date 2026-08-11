@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
 
-// Notch color (#ffffff) is painted to match the section's bg-white,
-// simulating a punched-out perforation rather than true masking.
+// Notch color is painted to match the section's own background (white in
+// light mode, the dark page bg in dark mode via the `--scallop-notch` CSS
+// var defined in index.css), simulating a punched-out perforation rather
+// than true masking.
 const scallopStyle = {
   backgroundImage:
-    'radial-gradient(circle at 12px 0px, #ffffff 10px, transparent 10.5px), ' +
-    'radial-gradient(circle at 12px 24px, #ffffff 10px, transparent 10.5px)',
+    'radial-gradient(circle at 12px 0px, var(--scallop-notch) 10px, transparent 10.5px), ' +
+    'radial-gradient(circle at 12px 24px, var(--scallop-notch) 10px, transparent 10.5px)',
   backgroundSize: '24px 24px, 24px 24px',
   backgroundPosition: 'top left, bottom left',
   backgroundRepeat: 'repeat-x, repeat-x',
@@ -21,7 +23,7 @@ const track = [...phraseSet, ...phraseSet]
 
 function TicketStrip() {
   return (
-    <section className="overflow-hidden bg-white py-16 sm:py-24">
+    <section className="overflow-hidden bg-white py-16 dark:bg-dark-base sm:py-24">
       {/* x/rotate are driven by framer here (not Tailwind's translate/rotate
           utilities) so the resting transform and the entrance animation don't
           fight over the same CSS property. */}

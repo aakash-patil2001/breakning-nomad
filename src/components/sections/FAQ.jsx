@@ -100,20 +100,20 @@ function InstagramIcon(props) {
 
 function FAQItem({ item, isOpen, onToggle }) {
   return (
-    <div className="border-b border-charcoal/10 last:border-b-0">
+    <div className="border-b border-charcoal/10 last:border-b-0 dark:border-white/10">
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
         className="flex w-full items-center justify-between gap-4 py-6 text-left"
       >
-        <span className="font-display text-base font-semibold text-charcoal sm:text-lg">
+        <span className="font-display text-base font-semibold text-charcoal dark:text-white sm:text-lg">
           {item.question}
         </span>
         <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.3, ease: EASE }}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-peach/60 text-charcoal"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-peach/60 text-charcoal dark:bg-white/10 dark:text-white"
         >
           <PlusIcon className="h-4 w-4" />
         </motion.span>
@@ -128,7 +128,7 @@ function FAQItem({ item, isOpen, onToggle }) {
             transition={{ duration: 0.35, ease: EASE }}
             className="overflow-hidden"
           >
-            <p className="pb-6 pr-12 font-sans text-sm leading-relaxed text-charcoal/70 sm:text-base">
+            <p className="pb-6 pr-12 font-sans text-sm leading-relaxed text-charcoal/70 dark:text-white/70 sm:text-base">
               {item.answer}
             </p>
           </motion.div>
@@ -142,7 +142,7 @@ function FAQ() {
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="faq" className="bg-sky px-6 py-24 sm:py-28">
+    <section id="faq" className="bg-sky px-6 py-24 dark:bg-dark-sky sm:py-28">
       <motion.div
         variants={sectionContainer}
         initial="hidden"
@@ -156,14 +156,14 @@ function FAQ() {
 
         <motion.h2
           variants={headingVariant}
-          className="text-center font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl"
+          className="text-center font-display text-3xl font-bold leading-tight text-charcoal dark:text-white sm:text-4xl"
         >
           Common <span className="font-accent italic text-coral">Questions</span>
         </motion.h2>
 
         <motion.div
           variants={headingVariant}
-          className="mx-auto mt-12 rounded-3xl border border-charcoal/10 bg-white px-6 shadow-lg shadow-charcoal/10 sm:px-10"
+          className="mx-auto mt-12 rounded-3xl border border-charcoal/10 bg-white px-6 shadow-lg shadow-charcoal/10 dark:border-white/10 dark:bg-dark-card dark:shadow-black/30 sm:px-10"
         >
           {faqs.map((item, index) => (
             <FAQItem
@@ -176,14 +176,14 @@ function FAQ() {
         </motion.div>
 
         <motion.div variants={headingVariant} className="mt-14 text-center">
-          <p className="font-sans text-sm font-semibold uppercase tracking-[0.2em] text-charcoal/50">
+          <p className="font-sans text-sm font-semibold uppercase tracking-[0.2em] text-charcoal/50 dark:text-white/50">
             Still have questions?
           </p>
 
           <div className="mt-5 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
             <a
               href="mailto:the.breaking.nomad@gmail.com"
-              className="flex items-center gap-2 font-sans text-sm font-medium text-charcoal transition-colors hover:text-coral"
+              className="flex items-center gap-2 font-sans text-sm font-medium text-charcoal transition-colors hover:text-coral dark:text-white"
             >
               <EmailIcon className="h-5 w-5 shrink-0" />
               the.breaking.nomad@gmail.com
@@ -194,7 +194,7 @@ function FAQ() {
               target="_blank"
               rel="noreferrer"
               aria-label="Breaking Nomad on Instagram"
-              className="flex items-center gap-2 font-sans text-sm font-medium text-charcoal transition-colors hover:text-coral"
+              className="flex items-center gap-2 font-sans text-sm font-medium text-charcoal transition-colors hover:text-coral dark:text-white"
             >
               <InstagramIcon className="h-5 w-5 shrink-0" />
               @the_breaking_nomad

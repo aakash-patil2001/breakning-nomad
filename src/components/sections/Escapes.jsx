@@ -26,7 +26,7 @@ const cardVariant = {
 
 function Escapes() {
   return (
-    <section id="escapes" className="bg-white px-6 py-24 sm:py-28">
+    <section id="escapes" className="bg-white px-6 py-24 dark:bg-dark-base sm:py-28">
       <motion.div
         variants={sectionContainer}
         initial="hidden"
@@ -40,7 +40,7 @@ function Escapes() {
 
         <motion.h2
           variants={headingVariant}
-          className="text-center font-display text-4xl font-bold leading-tight text-charcoal sm:text-5xl"
+          className="text-center font-display text-4xl font-bold leading-tight text-charcoal dark:text-white sm:text-5xl"
         >
           Our First <span className="font-accent italic text-coral">Escapes</span>
         </motion.h2>

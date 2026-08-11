@@ -75,26 +75,26 @@ function CustomRequestCard() {
   return (
     <motion.div
       variants={fadeUp}
-      className="mx-auto mt-20 flex max-w-4xl flex-col items-center gap-8 rounded-3xl border border-coral/20 bg-blush px-6 py-10 sm:flex-row sm:gap-10 sm:px-10 sm:py-12"
+      className="mx-auto mt-20 flex max-w-4xl flex-col items-center gap-8 rounded-3xl border border-coral/20 bg-blush px-6 py-10 dark:border-coral/30 dark:bg-dark-blush sm:flex-row sm:gap-10 sm:px-10 sm:py-12"
     >
       <div className="flex shrink-0 -space-x-8">
         <img
           src={cityImage}
           alt=""
-          className="h-24 w-20 -rotate-6 rounded-xl border-4 border-white object-cover shadow-lg shadow-charcoal/15 sm:h-28 sm:w-24"
+          className="h-24 w-20 -rotate-6 rounded-xl border-4 border-white object-cover shadow-lg shadow-charcoal/15 dark:border-dark-blush sm:h-28 sm:w-24"
         />
         <img
           src={wildlifeImage}
           alt=""
-          className="h-24 w-20 translate-y-3 rotate-6 rounded-xl border-4 border-white object-cover shadow-lg shadow-charcoal/15 sm:h-28 sm:w-24"
+          className="h-24 w-20 translate-y-3 rotate-6 rounded-xl border-4 border-white object-cover shadow-lg shadow-charcoal/15 dark:border-dark-blush sm:h-28 sm:w-24"
         />
       </div>
 
       <div className="flex-1 text-center sm:text-left">
-        <h3 className="font-display text-2xl font-bold leading-tight text-charcoal sm:text-3xl">
+        <h3 className="font-display text-2xl font-bold leading-tight text-charcoal dark:text-white sm:text-3xl">
           Can&apos;t Find What You&apos;re <span className="text-coral">Looking For?</span>
         </h3>
-        <p className="mt-2 font-sans text-sm text-charcoal/60 sm:text-base">
+        <p className="mt-2 font-sans text-sm text-charcoal/60 dark:text-white/60 sm:text-base">
           Tell us where you&apos;d like to go and we&apos;ll make it possible for you.
         </p>
 
@@ -112,7 +112,7 @@ function CustomRequestCard() {
                 onChange={(event) => setDestination(event.target.value)}
                 placeholder="Where do you want to go?"
                 aria-label="Where do you want to go?"
-                className="w-full rounded-full border border-charcoal/15 bg-white px-5 py-3 font-sans text-sm text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral sm:flex-1"
+                className="w-full rounded-full border border-charcoal/15 bg-white px-5 py-3 font-sans text-sm text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral dark:border-white/15 dark:bg-dark-card dark:text-white dark:placeholder-white/30 sm:flex-1"
               />
               <input
                 type="email"
@@ -121,7 +121,7 @@ function CustomRequestCard() {
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="Your email"
                 aria-label="Your email"
-                className="w-full rounded-full border border-charcoal/15 bg-white px-5 py-3 font-sans text-sm text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral sm:flex-1"
+                className="w-full rounded-full border border-charcoal/15 bg-white px-5 py-3 font-sans text-sm text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral dark:border-white/15 dark:bg-dark-card dark:text-white dark:placeholder-white/30 sm:flex-1"
               />
               <motion.button
                 type="submit"
@@ -137,7 +137,7 @@ function CustomRequestCard() {
             </div>
 
             {status === 'error' && (
-              <p className="font-sans text-sm font-medium text-red-600">{errorMessage}</p>
+              <p className="font-sans text-sm font-medium text-red-600 dark:text-red-400">{errorMessage}</p>
             )}
           </form>
         )}
@@ -165,7 +165,7 @@ function EscapesPage() {
       : escapes.filter((escape) => escape.tag === activeCategory)
 
   return (
-    <main className="bg-cream">
+    <main className="bg-cream dark:bg-dark-base">
       <PageNav />
 
       <section className="px-6 sm:px-10">
@@ -173,10 +173,10 @@ function EscapesPage() {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="relative mx-auto aspect-[16/9] w-full max-w-6xl overflow-hidden rounded-3xl border border-charcoal/10 shadow-lg shadow-charcoal/10 sm:aspect-[21/9]"
+          className="relative mx-auto aspect-[16/9] w-full max-w-6xl overflow-hidden rounded-3xl border border-charcoal/10 shadow-lg shadow-charcoal/10 dark:border-white/10 dark:shadow-black/30 sm:aspect-[21/9]"
         >
           <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-charcoal/50" />
+          <div className="absolute inset-0 bg-charcoal/50 dark:bg-black/60" />
           <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
             <h1 className="font-display text-3xl font-bold leading-tight text-white sm:text-5xl">
               Escapes <span className="text-coral">Crafted</span> for You
@@ -196,7 +196,7 @@ function EscapesPage() {
         className="mx-auto max-w-6xl px-6 py-16 sm:px-10 sm:py-20"
       >
         <motion.div variants={fadeUp} className="text-center">
-          <span className="font-sans text-sm font-semibold uppercase tracking-wide text-charcoal/50">
+          <span className="font-sans text-sm font-semibold uppercase tracking-wide text-charcoal/50 dark:text-white/50">
             Filter by
           </span>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
@@ -210,8 +210,8 @@ function EscapesPage() {
                   aria-pressed={selected}
                   className={`rounded-full border px-4 py-2 font-sans text-sm font-medium tracking-wide transition-colors duration-200 ${
                     selected
-                      ? 'border-charcoal bg-charcoal text-cream'
-                      : 'border-charcoal/15 text-charcoal/60 hover:border-charcoal/30 hover:text-charcoal'
+                      ? 'border-charcoal bg-charcoal text-cream dark:border-white dark:bg-white dark:text-charcoal'
+                      : 'border-charcoal/15 text-charcoal/60 hover:border-charcoal/30 hover:text-charcoal dark:border-white/15 dark:text-white/60 dark:hover:border-white/30 dark:hover:text-white'
                   }`}
                 >
                   {category}

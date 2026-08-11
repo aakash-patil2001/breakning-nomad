@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import heroImage from '../../assets/images/1-final.png'
+import heroImageNight from '../../assets/images/night-mode.png'
 import Eyebrow from '../ui/Eyebrow'
 import HeroNav from './HeroNav'
+import { useTheme } from '../../context/ThemeContext'
 
 const container = {
   hidden: {},
@@ -23,12 +25,18 @@ const item = {
 }
 
 function Hero() {
+  const { theme } = useTheme()
+
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-white"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-white dark:bg-dark-base"
     >
-      <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover" />
+      <img
+        src={theme === 'dark' ? heroImageNight : heroImage}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+      />
 
       <HeroNav />
 

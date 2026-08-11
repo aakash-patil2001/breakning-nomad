@@ -48,7 +48,7 @@ const REPEATS = 3
 function Polaroid({ src, rotate }) {
   return (
     <div
-      className="w-44 shrink-0 rounded-lg bg-white p-3 pb-8 shadow-lg shadow-charcoal/15 sm:w-52 md:w-60"
+      className="w-44 shrink-0 rounded-lg bg-white p-3 pb-8 shadow-lg shadow-charcoal/15 dark:bg-dark-card dark:shadow-black/30 sm:w-52 md:w-60"
       style={{ transform: `rotate(${rotate}deg)` }}
     >
       <img src={src} alt="" className="aspect-square w-full rounded-sm object-cover" />
@@ -89,7 +89,7 @@ function PhotoMarquee() {
   const track = Array.from({ length: REPEATS }, () => photos).flat()
 
   return (
-    <section className="overflow-hidden bg-cream py-14 sm:py-16">
+    <section className="overflow-hidden bg-cream py-14 dark:bg-dark-base sm:py-16">
       <motion.div
         ref={trackRef}
         className="flex w-max cursor-grab items-center gap-8 active:cursor-grabbing sm:gap-10"

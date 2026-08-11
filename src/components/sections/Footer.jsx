@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 const categoryTags = ['Mountains', 'Beaches', 'City', 'Wildlife']
 
 const pageLinks = [
   { label: 'Home', href: '#hero' },
+  { label: 'About', to: '/about' },
   { label: 'How It Works', href: '#howweplan' },
   { label: 'Escapes', href: '#escapes' },
   { label: 'Waitlist', href: '#waitlist' },
@@ -77,15 +79,25 @@ function Footer() {
               Pages
             </h3>
             <nav className="mt-4 flex flex-col items-center gap-3 lg:items-start">
-              {pageLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="font-sans text-sm text-white/70 transition-colors hover:text-coral"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {pageLinks.map((link) =>
+                link.to ? (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="font-sans text-sm text-white/70 transition-colors hover:text-coral"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="font-sans text-sm text-white/70 transition-colors hover:text-coral"
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
             </nav>
           </div>
 

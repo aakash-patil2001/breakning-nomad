@@ -105,7 +105,7 @@ function Waitlist() {
   }
 
   return (
-    <section id="waitlist" className="bg-sage px-6 py-24 sm:py-28">
+    <section id="waitlist" className="bg-sage px-6 py-24 dark:bg-dark-sage sm:py-28">
       <motion.div
         variants={pageContainer}
         initial="hidden"
@@ -116,7 +116,7 @@ function Waitlist() {
         <motion.div variants={fadeUp}>
           <Eyebrow tone="waitlist">Cohort Zero</Eyebrow>
 
-          <h2 className="font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl">
+          <h2 className="font-display text-3xl font-bold leading-tight text-charcoal dark:text-white sm:text-4xl">
             The Next <span className="font-accent italic text-coral">Cohort</span> Is Forming
           </h2>
 
@@ -132,7 +132,7 @@ function Waitlist() {
                 {count === null ? '—' : count.toLocaleString()}
               </motion.span>
             </AnimatePresence>
-            <p className="mt-2 font-sans text-sm uppercase tracking-[0.25em] text-charcoal/50">
+            <p className="mt-2 font-sans text-sm uppercase tracking-[0.25em] text-charcoal/50 dark:text-white/50">
               people have joined
             </p>
           </div>
@@ -146,12 +146,12 @@ function Waitlist() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: EASE }}
-                className="rounded-2xl border border-coral/20 bg-cream px-8 py-12 text-center"
+                className="rounded-2xl border border-coral/20 bg-cream px-8 py-12 text-center dark:border-coral/30 dark:bg-dark-card"
               >
-                <h3 className="font-display text-2xl font-bold text-charcoal">
+                <h3 className="font-display text-2xl font-bold text-charcoal dark:text-white">
                   You&apos;re on the list.
                 </h3>
-                <p className="mt-3 font-sans text-charcoal/70">
+                <p className="mt-3 font-sans text-charcoal/70 dark:text-white/70">
                   We&apos;ll be in touch as the next cohort takes shape.
                 </p>
               </motion.div>
@@ -179,7 +179,7 @@ function Waitlist() {
                     <motion.div variants={fieldItem}>
                       <label
                         htmlFor="waitlist-name"
-                        className="mb-2 block font-sans text-xs font-medium uppercase tracking-wide text-charcoal/50"
+                        className="mb-2 block font-sans text-xs font-medium uppercase tracking-wide text-charcoal/50 dark:text-white/50"
                       >
                         Name
                       </label>
@@ -190,14 +190,14 @@ function Waitlist() {
                         value={formData.name}
                         onChange={handleChange('name')}
                         placeholder="Your name"
-                        className="w-full rounded-lg border border-charcoal/15 bg-cream px-4 py-3 font-sans text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral"
+                        className="w-full rounded-lg border border-charcoal/15 bg-cream px-4 py-3 font-sans text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral dark:border-white/15 dark:bg-dark-card dark:text-white dark:placeholder-white/30"
                       />
                     </motion.div>
 
                     <motion.div variants={fieldItem}>
                       <label
                         htmlFor="waitlist-email"
-                        className="mb-2 block font-sans text-xs font-medium uppercase tracking-wide text-charcoal/50"
+                        className="mb-2 block font-sans text-xs font-medium uppercase tracking-wide text-charcoal/50 dark:text-white/50"
                       >
                         Email
                       </label>
@@ -208,14 +208,14 @@ function Waitlist() {
                         value={formData.email}
                         onChange={handleChange('email')}
                         placeholder="you@example.com"
-                        className="w-full rounded-lg border border-charcoal/15 bg-cream px-4 py-3 font-sans text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral"
+                        className="w-full rounded-lg border border-charcoal/15 bg-cream px-4 py-3 font-sans text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral dark:border-white/15 dark:bg-dark-card dark:text-white dark:placeholder-white/30"
                       />
                     </motion.div>
 
                     <motion.div variants={fieldItem}>
                       <label
                         htmlFor="waitlist-city"
-                        className="mb-2 block font-sans text-xs font-medium uppercase tracking-wide text-charcoal/50"
+                        className="mb-2 block font-sans text-xs font-medium uppercase tracking-wide text-charcoal/50 dark:text-white/50"
                       >
                         City you work from
                       </label>
@@ -226,14 +226,14 @@ function Waitlist() {
                         value={formData.city}
                         onChange={handleChange('city')}
                         placeholder="Mumbai, Bengaluru..."
-                        className="w-full rounded-lg border border-charcoal/15 bg-cream px-4 py-3 font-sans text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral"
+                        className="w-full rounded-lg border border-charcoal/15 bg-cream px-4 py-3 font-sans text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral dark:border-white/15 dark:bg-dark-card dark:text-white dark:placeholder-white/30"
                       />
                     </motion.div>
 
                     <motion.div variants={fieldItem}>
                       <label
                         htmlFor="waitlist-role"
-                        className="mb-2 block font-sans text-xs font-medium uppercase tracking-wide text-charcoal/50"
+                        className="mb-2 block font-sans text-xs font-medium uppercase tracking-wide text-charcoal/50 dark:text-white/50"
                       >
                         What do you do
                       </label>
@@ -244,7 +244,7 @@ function Waitlist() {
                         value={formData.role}
                         onChange={handleChange('role')}
                         placeholder="Designer, engineer..."
-                        className="w-full rounded-lg border border-charcoal/15 bg-cream px-4 py-3 font-sans text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral"
+                        className="w-full rounded-lg border border-charcoal/15 bg-cream px-4 py-3 font-sans text-charcoal placeholder-charcoal/30 outline-none transition-colors focus:border-coral focus:ring-1 focus:ring-coral dark:border-white/15 dark:bg-dark-card dark:text-white dark:placeholder-white/30"
                       />
                     </motion.div>
                   </motion.div>
@@ -266,7 +266,7 @@ function Waitlist() {
                             className={`rounded-full border px-4 py-2 font-sans text-sm font-medium tracking-wide transition-colors duration-200 ${
                               selected
                                 ? 'border-coral bg-coral text-cream'
-                                : 'border-charcoal/15 text-charcoal/60 hover:border-charcoal/30 hover:text-charcoal'
+                                : 'border-charcoal/15 text-charcoal/60 hover:border-charcoal/30 hover:text-charcoal dark:border-white/15 dark:text-white/60 dark:hover:border-white/30 dark:hover:text-white'
                             }`}
                           >
                             {option}
@@ -279,7 +279,7 @@ function Waitlist() {
                   {status === 'error' && (
                     <motion.p
                       variants={fieldItem}
-                      className="font-sans text-sm font-medium text-red-600"
+                      className="font-sans text-sm font-medium text-red-600 dark:text-red-400"
                     >
                       {errorMessage}
                     </motion.p>

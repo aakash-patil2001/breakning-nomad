@@ -136,7 +136,7 @@ function Postcard({ src, className, rotate }) {
   return (
     <div className={`pointer-events-none absolute hidden lg:block ${className}`}>
       <div
-        className="rounded-lg border-2 border-dashed border-charcoal/25 bg-white p-2.5 shadow-md shadow-charcoal/10"
+        className="rounded-lg border-2 border-dashed border-charcoal/25 bg-white p-2.5 shadow-md shadow-charcoal/10 dark:border-white/20 dark:bg-dark-card dark:shadow-black/30"
         style={{ transform: `rotate(${rotate}deg)` }}
       >
         <img src={src} alt="" className="h-32 w-44 rounded-sm object-cover opacity-80" />
@@ -149,10 +149,10 @@ function Postmark({ className, rotate }) {
   return (
     <div className={`pointer-events-none absolute hidden lg:block ${className}`}>
       <div
-        className="flex h-32 w-32 items-center justify-center rounded-full border-2 border-dashed border-charcoal/25 opacity-70"
+        className="flex h-32 w-32 items-center justify-center rounded-full border-2 border-dashed border-charcoal/25 opacity-70 dark:border-white/20"
         style={{ transform: `rotate(${rotate}deg)` }}
       >
-        <div className="flex h-24 w-24 items-center justify-center rounded-full border border-charcoal/20">
+        <div className="flex h-24 w-24 items-center justify-center rounded-full border border-charcoal/20 dark:border-white/15">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -160,7 +160,7 @@ function Postmark({ className, rotate }) {
             strokeWidth={1.5}
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="h-9 w-9 text-charcoal/40"
+            className="h-9 w-9 text-charcoal/40 dark:text-white/40"
           >
             <path d="M2 12l19-9-7 19-3-7-7-3Z" />
           </svg>
@@ -174,10 +174,10 @@ function LuggageTag({ className, rotate }) {
   return (
     <div className={`pointer-events-none absolute hidden lg:block ${className}`}>
       <div
-        className="relative flex h-28 w-40 flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-charcoal/25 bg-white px-4 shadow-md shadow-charcoal/10"
+        className="relative flex h-28 w-40 flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-charcoal/25 bg-white px-4 shadow-md shadow-charcoal/10 dark:border-white/20 dark:bg-dark-card dark:shadow-black/30"
         style={{ transform: `rotate(${rotate}deg)` }}
       >
-        <div className="absolute -top-3 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-charcoal/25 bg-white" />
+        <div className="absolute -top-3 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-charcoal/25 bg-white dark:border-white/20 dark:bg-dark-card" />
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -185,11 +185,11 @@ function LuggageTag({ className, rotate }) {
           strokeWidth={1.5}
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="h-8 w-8 text-charcoal/40"
+          className="h-8 w-8 text-charcoal/40 dark:text-white/40"
         >
           <path d="M2 12l19-9-7 19-3-7-7-3Z" />
         </svg>
-        <span className="font-display text-xs font-bold uppercase tracking-wide text-charcoal/40">
+        <span className="font-display text-xs font-bold uppercase tracking-wide text-charcoal/40 dark:text-white/40">
           Bon Voyage
         </span>
       </div>
@@ -237,7 +237,7 @@ function CategoryCard({
         >
           <button
             type="button"
-            className="relative h-96 w-72 appearance-none rounded-full border-0 bg-transparent p-0 sm:h-[27rem] sm:w-80 md:h-[30rem] md:w-96 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+            className="relative h-96 w-72 appearance-none rounded-full border-0 bg-transparent p-0 sm:h-[27rem] sm:w-80 md:h-[30rem] md:w-96 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-dark-base"
             style={{ perspective: 1200 }}
             onClick={isCenter ? () => onExplore(category) : onSelect}
             onMouseEnter={
@@ -275,7 +275,7 @@ function CategoryCard({
 
               {/* Back */}
               <div
-                className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-full border border-coral/30 bg-cream px-6 text-center shadow-lg shadow-charcoal/10"
+                className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-full border border-coral/30 bg-cream px-6 text-center shadow-lg shadow-charcoal/10 dark:border-coral/30 dark:bg-dark-card dark:shadow-black/30"
                 style={{
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden',
@@ -283,7 +283,7 @@ function CategoryCard({
                 }}
               >
                 <Icon className="h-8 w-8 text-coral" />
-                <p className="font-sans text-sm leading-snug text-charcoal/80">{teaser}</p>
+                <p className="font-sans text-sm leading-snug text-charcoal/80 dark:text-white/80">{teaser}</p>
               </div>
             </motion.div>
           </button>
@@ -292,8 +292,8 @@ function CategoryCard({
         <span
           className={`mt-5 whitespace-nowrap font-display transition-all duration-300 ${
             isCenter
-              ? 'text-2xl font-bold text-charcoal opacity-100 sm:text-3xl'
-              : 'text-base font-semibold text-charcoal/45 sm:text-lg'
+              ? 'text-2xl font-bold text-charcoal opacity-100 dark:text-white sm:text-3xl'
+              : 'text-base font-semibold text-charcoal/45 dark:text-white/45 sm:text-lg'
           }`}
         >
           {name}
@@ -333,7 +333,7 @@ function Categories() {
   return (
     <section
       id="categories"
-      className="relative overflow-hidden bg-white px-6 py-24 sm:py-28"
+      className="relative overflow-hidden bg-white px-6 py-24 dark:bg-dark-base sm:py-28"
     >
       <Postcard src={postcardImage1} rotate={-8} className="left-2 top-24 xl:left-10" />
       <Postmark rotate={12} className="right-2 top-10 xl:right-14" />
@@ -353,7 +353,7 @@ function Categories() {
 
         <motion.h2
           variants={headingVariant}
-          className="text-center font-display text-4xl font-bold leading-tight text-charcoal sm:text-5xl"
+          className="text-center font-display text-4xl font-bold leading-tight text-charcoal dark:text-white sm:text-5xl"
         >
           Discover <span className="font-accent italic text-coral">Adventures</span> That Suit You
         </motion.h2>
@@ -394,7 +394,9 @@ function Categories() {
               aria-current={index === active}
               onClick={() => goTo(index)}
               className={`h-2.5 rounded-full transition-all duration-300 ${
-                index === active ? 'w-7 bg-coral' : 'w-2.5 bg-charcoal/20 hover:bg-charcoal/40'
+                index === active
+                  ? 'w-7 bg-coral'
+                  : 'w-2.5 bg-charcoal/20 hover:bg-charcoal/40 dark:bg-white/20 dark:hover:bg-white/40'
               }`}
             />
           ))}

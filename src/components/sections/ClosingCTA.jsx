@@ -23,7 +23,7 @@ function ClosingCTA() {
         className="absolute inset-0 h-full w-full object-cover"
       />
       {/* Dark overlay so white text stays legible over the photo */}
-      <div className="absolute inset-0 bg-charcoal/60" />
+      <div className="absolute inset-0 bg-charcoal/60 dark:bg-black/70" />
 
       <motion.div
         variants={container}

@@ -150,20 +150,20 @@ function DestinationCollage({ images, name }) {
 
 function ItineraryDay({ day, isOpen, onToggle }) {
   return (
-    <div className="border-b border-charcoal/10 last:border-b-0">
+    <div className="border-b border-charcoal/10 last:border-b-0 dark:border-white/10">
       <button
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
         className="flex w-full items-center justify-between gap-4 py-5 text-left"
       >
-        <span className="font-display text-base font-bold text-charcoal sm:text-lg">
+        <span className="font-display text-base font-bold text-charcoal dark:text-white sm:text-lg">
           {day.day} &mdash; {day.title}
         </span>
         <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.3, ease: EASE }}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-peach/60 text-charcoal"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-peach/60 text-charcoal dark:bg-white/10 dark:text-white"
         >
           <PlusIcon className="h-4 w-4" />
         </motion.span>
@@ -181,7 +181,7 @@ function ItineraryDay({ day, isOpen, onToggle }) {
             <p className="pb-5 font-sans text-xs font-semibold uppercase tracking-wide text-coral">
               {day.location}
             </p>
-            <p className="-mt-3 pb-5 pr-10 font-sans text-sm leading-relaxed text-charcoal/70">
+            <p className="-mt-3 pb-5 pr-10 font-sans text-sm leading-relaxed text-charcoal/70 dark:text-white/70">
               {day.description}
             </p>
           </motion.div>
@@ -198,8 +198,8 @@ function EscapeDetailPage() {
 
   if (!escape) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-cream px-6 text-center">
-        <h1 className="font-display text-2xl font-bold text-charcoal">Escape not found</h1>
+      <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-cream px-6 text-center dark:bg-dark-base">
+        <h1 className="font-display text-2xl font-bold text-charcoal dark:text-white">Escape not found</h1>
         <Link
           to="/escapes"
           className="font-sans text-sm font-semibold text-coral hover:text-coral-dark"
@@ -213,7 +213,7 @@ function EscapeDetailPage() {
   const otherEscapes = escapes.filter((item) => item.slug !== escape.slug)
 
   return (
-    <main className="bg-cream">
+    <main className="bg-cream dark:bg-dark-base">
       <PageNav />
 
       <section className="px-6 sm:px-10">
@@ -223,10 +223,10 @@ function EscapeDetailPage() {
           transition={{ duration: 0.5, ease: EASE }}
           className="mx-auto max-w-6xl pt-8 sm:pt-10"
         >
-          <span className="inline-flex rounded-full bg-white px-3.5 py-1.5 font-sans text-xs font-semibold tracking-wide text-charcoal shadow-sm">
+          <span className="inline-flex rounded-full bg-white px-3.5 py-1.5 font-sans text-xs font-semibold tracking-wide text-charcoal shadow-sm dark:bg-dark-card dark:text-white">
             {escape.tag}
           </span>
-          <h1 className="mt-4 font-display text-3xl font-bold leading-tight text-charcoal sm:text-5xl">
+          <h1 className="mt-4 font-display text-3xl font-bold leading-tight text-charcoal dark:text-white sm:text-5xl">
             {escape.name}
           </h1>
         </motion.div>
@@ -249,32 +249,38 @@ function EscapeDetailPage() {
       >
         {/* Main column */}
         <motion.div variants={fadeUp}>
-          <h2 className="font-display text-2xl font-bold leading-tight text-charcoal sm:text-3xl">
+          <h2 className="font-display text-2xl font-bold leading-tight text-charcoal dark:text-white sm:text-3xl">
             {escape.tagline}
           </h2>
-          <div className="my-5 border-t border-dashed border-charcoal/20" />
+          <div className="my-5 border-t border-dashed border-charcoal/20 dark:border-white/15" />
           {escape.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-4 font-sans text-sm leading-relaxed text-charcoal/70 sm:text-base">
+            <p
+              key={paragraph}
+              className="mt-4 font-sans text-sm leading-relaxed text-charcoal/70 dark:text-white/70 sm:text-base"
+            >
               {paragraph}
             </p>
           ))}
 
-          <h3 className="mt-12 font-display text-xl font-bold text-charcoal sm:text-2xl">
+          <h3 className="mt-12 font-display text-xl font-bold text-charcoal dark:text-white sm:text-2xl">
             Why This Journey
           </h3>
           <ul className="mt-5 space-y-3">
             {escape.highlights.map((highlight) => (
-              <li key={highlight} className="flex items-start gap-3 font-sans text-sm text-charcoal/70 sm:text-base">
+              <li
+                key={highlight}
+                className="flex items-start gap-3 font-sans text-sm text-charcoal/70 dark:text-white/70 sm:text-base"
+              >
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-coral" />
                 {highlight}
               </li>
             ))}
           </ul>
 
-          <h3 className="mt-12 font-display text-xl font-bold text-charcoal sm:text-2xl">
+          <h3 className="mt-12 font-display text-xl font-bold text-charcoal dark:text-white sm:text-2xl">
             Full Itinerary
           </h3>
-          <div className="mt-5 rounded-2xl border border-charcoal/10 bg-white px-5 shadow-sm sm:px-6">
+          <div className="mt-5 rounded-2xl border border-charcoal/10 bg-white px-5 shadow-sm dark:border-white/10 dark:bg-dark-card sm:px-6">
             {escape.itinerary.map((day, index) => (
               <ItineraryDay
                 key={day.day}
@@ -285,30 +291,36 @@ function EscapeDetailPage() {
             ))}
           </div>
 
-          <h3 className="mt-12 font-display text-xl font-bold text-charcoal sm:text-2xl">
+          <h3 className="mt-12 font-display text-xl font-bold text-charcoal dark:text-white sm:text-2xl">
             What&apos;s Covered
           </h3>
           <div className="mt-5 grid grid-cols-1 gap-8 sm:grid-cols-2">
             <div>
-              <p className="font-sans text-xs font-semibold uppercase tracking-wide text-charcoal/50">
+              <p className="font-sans text-xs font-semibold uppercase tracking-wide text-charcoal/50 dark:text-white/50">
                 Inclusions
               </p>
               <ul className="mt-3 space-y-2.5">
                 {escape.inclusions.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 font-sans text-sm text-charcoal/70">
-                    <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 font-sans text-sm text-charcoal/70 dark:text-white/70"
+                  >
+                    <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <p className="font-sans text-xs font-semibold uppercase tracking-wide text-charcoal/50">
+              <p className="font-sans text-xs font-semibold uppercase tracking-wide text-charcoal/50 dark:text-white/50">
                 Exclusions
               </p>
               <ul className="mt-3 space-y-2.5">
                 {escape.exclusions.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 font-sans text-sm text-charcoal/70">
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 font-sans text-sm text-charcoal/70 dark:text-white/70"
+                  >
                     <CrossIcon className="mt-0.5 h-4 w-4 shrink-0 text-coral" />
                     {item}
                   </li>
@@ -330,24 +342,24 @@ function EscapeDetailPage() {
             </p>
           </div>
 
-          <div className="mt-4 space-y-4 rounded-2xl border border-charcoal/10 bg-white px-6 py-6 sm:px-8 sm:py-8">
+          <div className="mt-4 space-y-4 rounded-2xl border border-charcoal/10 bg-white px-6 py-6 dark:border-white/10 dark:bg-dark-card sm:px-8 sm:py-8">
             <div className="flex items-center justify-between font-sans text-sm">
-              <span className="flex items-center gap-2 text-charcoal/50">
+              <span className="flex items-center gap-2 text-charcoal/50 dark:text-white/50">
                 <ClockIcon className="h-4 w-4" /> Duration
               </span>
-              <span className="font-semibold text-charcoal">{escape.duration}</span>
+              <span className="font-semibold text-charcoal dark:text-white">{escape.duration}</span>
             </div>
             <div className="flex items-center justify-between font-sans text-sm">
-              <span className="flex items-center gap-2 text-charcoal/50">
+              <span className="flex items-center gap-2 text-charcoal/50 dark:text-white/50">
                 <PinIcon className="h-4 w-4" /> Destination
               </span>
-              <span className="font-semibold text-charcoal">{escape.destination}</span>
+              <span className="font-semibold text-charcoal dark:text-white">{escape.destination}</span>
             </div>
             <div className="flex items-center justify-between font-sans text-sm">
-              <span className="flex items-center gap-2 text-charcoal/50">
+              <span className="flex items-center gap-2 text-charcoal/50 dark:text-white/50">
                 <GroupIcon className="h-4 w-4" /> Group size
               </span>
-              <span className="font-semibold text-charcoal">{escape.groupSize}</span>
+              <span className="font-semibold text-charcoal dark:text-white">{escape.groupSize}</span>
             </div>
 
             <a
@@ -357,8 +369,8 @@ function EscapeDetailPage() {
               Join the Waitlist
             </a>
 
-            <div className="border-t border-dashed border-charcoal/15 pt-4 text-center">
-              <p className="font-sans text-xs text-charcoal/50">Need help deciding?</p>
+            <div className="border-t border-dashed border-charcoal/15 pt-4 text-center dark:border-white/15">
+              <p className="font-sans text-xs text-charcoal/50 dark:text-white/50">Need help deciding?</p>
               <a
                 href="mailto:the.breaking.nomad@gmail.com"
                 className="mt-1 inline-block font-sans text-sm font-semibold text-coral hover:text-coral-dark"
@@ -372,9 +384,9 @@ function EscapeDetailPage() {
 
       {otherEscapes.length > 0 && (
         <div className="mx-auto max-w-6xl px-6 pb-20 sm:px-10">
-          <div className="border-t border-charcoal/10 pt-16">
+          <div className="border-t border-charcoal/10 pt-16 dark:border-white/10">
             <div className="flex items-center justify-between">
-              <h2 className="font-display text-2xl font-bold leading-tight text-charcoal sm:text-3xl">
+              <h2 className="font-display text-2xl font-bold leading-tight text-charcoal dark:text-white sm:text-3xl">
                 More <span className="text-coral">Escapes</span>
               </h2>
               <Link

@@ -8,13 +8,13 @@ function PageNav() {
     <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:px-10">
       <Link
         to="/"
-        className="font-display text-lg font-bold tracking-tight text-charcoal sm:text-xl"
+        className="font-display text-lg font-bold tracking-tight text-charcoal dark:text-white sm:text-xl"
       >
         Breaking <span className="text-coral">Nomad</span>
       </Link>
       <Link
         to="/"
-        className="font-sans text-sm font-medium text-charcoal/60 transition-colors hover:text-coral"
+        className="font-sans text-sm font-medium text-charcoal/60 transition-colors hover:text-coral dark:text-white/60"
       >
         &larr; Back Home
       </Link>

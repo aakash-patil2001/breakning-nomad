@@ -13,30 +13,32 @@ function EscapeCard({ escape, variants = defaultVariant }) {
   return (
     <motion.div
       variants={variants}
-      className="overflow-hidden rounded-2xl border border-charcoal/10 bg-blush shadow-lg shadow-charcoal/10 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-charcoal/20"
+      className="overflow-hidden rounded-2xl border border-charcoal/10 bg-blush shadow-lg shadow-charcoal/10 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-charcoal/20 dark:border-white/10 dark:bg-dark-blush dark:shadow-black/30 dark:hover:shadow-black/50"
     >
       <Link to={`/escapes/${escape.slug}`} className="block">
         <div className="relative aspect-[3/4]">
           <img src={escape.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
-          <span className="absolute bottom-3 left-3 rounded-full bg-white px-3 py-1 font-sans text-xs font-semibold tracking-wide text-charcoal shadow-sm">
+          <span className="absolute bottom-3 left-3 rounded-full bg-white px-3 py-1 font-sans text-xs font-semibold tracking-wide text-charcoal shadow-sm dark:bg-dark-card dark:text-white">
             {escape.tag}
           </span>
         </div>
 
         <div className="px-5 py-5 sm:px-6 sm:py-6">
-          <h3 className="font-display text-xl font-bold leading-snug text-charcoal sm:text-2xl">
+          <h3 className="font-display text-xl font-bold leading-snug text-charcoal dark:text-white sm:text-2xl">
             {escape.name}
           </h3>
-          <p className="mt-1.5 font-sans text-sm text-charcoal/50">{escape.description}</p>
+          <p className="mt-1.5 font-sans text-sm text-charcoal/50 dark:text-white/50">{escape.description}</p>
 
-          <div className="my-4 border-t border-dashed border-charcoal/20" />
+          <div className="my-4 border-t border-dashed border-charcoal/20 dark:border-white/15" />
 
           <div className="flex items-center justify-between">
-            <p className="font-display text-2xl font-bold text-charcoal">
+            <p className="font-display text-2xl font-bold text-charcoal dark:text-white">
               ${escape.price}
-              <span className="ml-1 font-sans text-sm font-normal text-charcoal/50">/person</span>
+              <span className="ml-1 font-sans text-sm font-normal text-charcoal/50 dark:text-white/50">
+                /person
+              </span>
             </p>
-            <span className="rounded-full bg-charcoal px-3.5 py-1.5 font-sans text-xs font-semibold text-cream">
+            <span className="rounded-full bg-charcoal px-3.5 py-1.5 font-sans text-xs font-semibold text-cream dark:bg-cream dark:text-charcoal">
               {escape.duration}
             </span>
           </div>
